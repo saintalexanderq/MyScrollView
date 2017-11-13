@@ -17,13 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    newView.bounds = CGRectMake(0, 100, newView.bounds.size.width, newView.bounds.size.height);
-    [self.view addSubview:newView];
+   
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, newView.bounds.size.width, newView.bounds.size.height)];
-    scrollView.contentSize = newView.bounds.size;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    
     [self.view addSubview:scrollView];
+    
+    UIView *containerView = [[UIView alloc] init];
+    containerView.frame = CGRectMake(0, 100, containerView.bounds.size.width, self.view.bounds.size.height + 200);
+    [scrollView addSubview:containerView];
+    scrollView.contentSize = containerView.bounds.size;
     
 //    A red UIView at (20,20) x, y coordinates and with width 100 and height 100
     UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
